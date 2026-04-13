@@ -1,0 +1,1 @@
+gcc -O2 -fopenmp -o n_paralelo queen_paralelo.c
