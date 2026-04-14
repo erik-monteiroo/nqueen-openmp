@@ -3,15 +3,6 @@
  * ─────────────────────────────────────────────────────────────────────────────
  * Problema das N-Rainhas — Brute Force Paralelo com OpenMP
  *
- * Conta TODAS as soluções válidas para o tabuleiro NxN.
- * Mede o tempo total de execução para cálculo de speed-up.
- *
- * Correções em relação à versão com bug:
- *   1. board[] deixou de ser global — cada thread tem seu próprio board local
- *      (evita race condition: threads sobrescrevendo o estado umas das outras)
- *   2. #pragma omp aplicado APENAS nas duas primeiras linhas da recursão,
- *      gerando N² tarefas independentes — melhor granularidade e balanceamento
- *
  * Compilação:
  *   gcc -O2 -fopenmp -o nqueens_omp nqueens_omp.c
  *
@@ -122,7 +113,7 @@ int main(int argc, char *argv[]) {
     for (int col0 = 0; col0 < n; col0++) {
         //percorre procurando lugar para a segunda rainha
         for (int col1 = 0; col1 < n; col1++) {
-
+ 
             //A PARTIR DAQUI É UMA TAREFA ()
             //cria um board local para esta thread
             int board_local[N_MAX];
