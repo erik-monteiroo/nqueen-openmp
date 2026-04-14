@@ -22,15 +22,12 @@
 
 #define N_MAX 20
 
-/* board[linha] = coluna onde a rainha foi colocada naquela linha */
+
 int board[N_MAX];
 
-/* contador global de soluções encontradas */
 long long total_solucoes = 0;
 
-/* ─────────────────────────────────────────────────────────────────────── */
-/*  Verifica se a rainha na posição (row, col) conflita com as anteriores  */
-/* ─────────────────────────────────────────────────────────────────────── */
+//verifica se da pra por rainha no local
 int place(int row, int col) {
     for (int i = 0; i < row; i++) {
         /* mesmo coluna */
@@ -57,7 +54,7 @@ int place(int row, int col) {
 /*  schedule(dynamic) é essencial pois subárvores têm tamanhos diferentes. */
 /* ─────────────────────────────────────────────────────────────────────── */
 void queen(int row, int n) {
-    /* caso base: todas as rainhas foram colocadas — solução encontrada */
+    // se todas as rainhas foram postas, soma mais um
     if (row == n) {
         total_solucoes++;
         return;
